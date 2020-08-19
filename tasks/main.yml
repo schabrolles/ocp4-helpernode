@@ -118,11 +118,12 @@
       - "/var/lib/tftpboot/rhcos/kernel"
     when: force_ocp_download
 
-  - name: Downloading OCP4 installer Bios
-    get_url:
-      url: "{{ ocp_bios}}"
-      dest: /var/www/html/install/bios.raw.gz
-      mode: 0555
+  # DIRTY Not needed
+  # - name: Downloading OCP4 installer Bios
+  #   get_url:
+  #     url: "{{ ocp_bios}}"
+  #     dest: /var/www/html/install/bios.raw.gz
+  #     mode: 0555
       
   - name: Start firewalld service
     systemd:

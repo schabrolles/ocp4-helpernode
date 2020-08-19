@@ -211,19 +211,19 @@
     shell: "cp -a /usr/share/syslinux/* /var/lib/tftpboot"
     when: not staticips and not ppc64le
 
-  - name: Downloading OCP4 installer initramfs
-    get_url:
-      url: "{{ ocp_initramfs }}"
-      dest: /var/lib/tftpboot/rhcos/initramfs.img
-      mode: 0555
-    when: not staticips
+  # - name: Downloading OCP4 installer initramfs
+  #   get_url:
+  #     url: "{{ ocp_initramfs }}"
+  #     dest: /var/lib/tftpboot/rhcos/initramfs.img
+  #     mode: 0555
+  #   when: not staticips
 
-  - name: Downloading OCP4 installer kernel
-    get_url:
-      url: "{{ ocp_install_kernel }}"
-      dest: /var/lib/tftpboot/rhcos/kernel
-      mode: 0555
-    when: not staticips
+  # - name: Downloading OCP4 installer kernel
+  #   get_url:
+  #     url: "{{ ocp_install_kernel }}"
+  #     dest: /var/lib/tftpboot/rhcos/kernel
+  #     mode: 0555
+  #   when: not staticips
 
   - name: Generate pxe config files
     block:

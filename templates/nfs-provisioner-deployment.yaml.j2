@@ -17,6 +17,9 @@ spec:
       serviceAccountName: nfs-client-provisioner
       containers:
         - name: nfs-client-provisioner
+{% if nfs_client_provisioner_image %}
+          image: {{ nfs_client_provisioner_image }} 
+{% else %}
 {% if ansible_architecture == "ppc64le" and setup_registry.deploy %}
           image: registry.{{ dns.clusterid }}.{{ dns.domain }}:5000/nfs-client-provisioner-ppc64le:latest
 {% elif ansible_architecture == "ppc64le" %}
@@ -26,6 +29,7 @@ spec:
           image: registry.{{ dns.clusterid }}.{{ dns.domain }}:5000/nfs-client-provisioner:latest
 {% else %}
           image: quay.io/external_storage/nfs-client-provisioner:latest
+{% endif %}
 {% endif %}
 {% endif %}
           volumeMounts:
